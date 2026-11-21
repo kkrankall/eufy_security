@@ -185,6 +185,24 @@ class PropertyToEntityDescription(Enum):
     lockStatus = EntityDescription(id=auto(), category=EntityCategory.DIAGNOSTIC)
     leftOpenAlarm = EntityDescription(id=auto(), category=EntityCategory.DIAGNOSTIC)
 
+    # smart safe alerts (binary sensors set by push notifications)
+    lowBatteryAlert = EntityDescription(id=auto(), device_class=BinarySensorDeviceClass.BATTERY)
+    longTimeNotCloseAlert = EntityDescription(id=auto(), icon="mdi:safe", device_class=BinarySensorDeviceClass.PROBLEM)
+    # the property name starts with a digit, so it cannot be written as a plain member name
+    locals()["911Alert"] = EntityDescription(id=auto(), device_class=BinarySensorDeviceClass.SAFETY)
+
+    # smart safe settings; wrongTry* and scramblePasscode also exist on smart locks
+    wrongTryProtection = EntityDescription(id=auto(), icon="mdi:shield-lock", category=EntityCategory.CONFIG)
+    wrongTryAttempts = EntityDescription(id=auto(), icon="mdi:counter", category=EntityCategory.CONFIG)
+    wrongTryLockdownTime = EntityDescription(id=auto(), icon="mdi:timer-lock", category=EntityCategory.CONFIG)
+    scramblePasscode = EntityDescription(id=auto(), icon="mdi:dialpad", category=EntityCategory.CONFIG)
+    dualUnlock = EntityDescription(id=auto(), icon="mdi:account-multiple-check", category=EntityCategory.CONFIG)
+    tamperAlarm = EntityDescription(id=auto(), icon="mdi:alarm-light", category=EntityCategory.CONFIG)
+    leftOpenAlarmDuration = EntityDescription(id=auto(), icon="mdi:timer-alert", category=EntityCategory.CONFIG)
+    interiorBrightness = EntityDescription(id=auto(), icon="mdi:brightness-6", category=EntityCategory.CONFIG)
+    interiorBrightnessDuration = EntityDescription(id=auto(), icon="mdi:timer-outline", unit="s", category=EntityCategory.CONFIG)
+    powerSave = EntityDescription(id=auto(), icon="mdi:leaf", category=EntityCategory.CONFIG)
+
     # fallback
     default = EntityDescription(id=auto(), category=EntityCategory.DIAGNOSTIC)
 

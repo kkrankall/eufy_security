@@ -40,6 +40,8 @@ class EufyNumberEntity(NumberEntity, EufySecurityEntity):
             self._attr_native_min_value = metadata.min
         if metadata.max is not None:
             self._attr_native_max_value = metadata.max
+        if self.description.unit is not None:
+            self._attr_native_unit_of_measurement = self.description.unit
 
     @property
     def native_value(self) -> float:
